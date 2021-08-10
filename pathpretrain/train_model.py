@@ -179,6 +179,7 @@ def train_model(inputs_dir='inputs_training',
             for k in datasets:
                 if len(datasets[k].tensors[1].shape)>1 and not semantic_segmentation: datasets[k]=TensorDataset(datasets[k].tensors[0],datasets[k].tensors[1].flatten())
         elif pickle_dataset:
+            print("test")
             datasets = {x: PickleDataset(os.path.join(inputs_dir,f"{x}_data.pkl"),transformers[x],label_map) for x in ['train','val', 'test'] if os.path.exists(os.path.join(inputs_dir,f"{x}_data.pkl"))}
         else:
             datasets = {x: Datasets.ImageFolder(os.path.join(
